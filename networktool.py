@@ -14,8 +14,9 @@ def validate_ip(ip):
           if not octet.isdigit(): 
                return False         # om det inte är siffror: avslutar funktionen och ger "ogiltig IP"
      if not 0 <= int(octet) <= 255:
-              return False #       # om det är utanför intervallet: avslutar funktionen och ger "ogiltig IP"
-     return True                   # om allt ovan klaras: Giltig IP! 
+              return False #        # om det är utanför intervallet: avslutar funktionen och ger "ogiltig IP"
+     return True                    # om allt ovan klaras: Giltig IP! 
+
 
 def validate_port(port):
      port = port.strip()
@@ -29,38 +30,53 @@ def validate_port(port):
           return True
      else:
           return False
+
+
+def show_log(log):
+     print('=== LOGGEN ===')
+
+     if len(log) == 0:
+          print('Loggen är tom.')
      
-while True: 
-     show_menu()
-     choice = input('Gör ett val (1-4): ')
-         
-     if choice == '1': 
-          ip = input('Ange IP-adress: ')
-          if validate_ip(ip):
-               print(f'{ip} är en giltig IP-adress. \n')
-          else:
-               print(f'{ip} är en ogiltig IP-adress. \n')
-               
-     elif choice == '2':
-          port = input('Ange port: ')
-          if validate_port(port):
-               print(f'Port {port}' ' är giltig!')  
-          else:
-               print(f'Port {port} är ogiltig.')  
-                              
-          import logging
-          logging.basicConfig(
-          level=logging.INFO,
-          format='%(asctime)s - %(levelname)s - %(message)s',
-          datefmt='%Y-%m-%d %H:%M:%S')                         
-          logg = []
-                              
-     if choice == '3':
-          print('Logg:')
-          for rad in logg:
-               print(rad)
-     elif choice == '4': 
-          print('Avslutar...')
-          break 
-                              
+     else:
+          for index, entry in enumerate(log, start=1):
+               print(f'{index}\t{entry}')
+
+
+def main():
+    log = []                       # här ligger logglistan
     
+    while True: 
+          show_menu()
+          choice = input('Gör ett val (1-4): ')
+     
+          if choice == '1': 
+              ip = input('Ange IP-adress: ')
+              
+              if validate_ip(ip):
+                    print(f'{ip} är en giltig IP-adress. \n')
+                    log.append(f'IP {ip} - giltig')
+               
+              else:
+                    print(f'{ip} är en ogiltig IP-adress. \n')
+                    log.append(f'IP {ip} - ogiltig')
+          
+          elif choice == '2':
+               port = input('Ange port: ')
+
+               if validate_port(port):
+                    print(f'Port {port}' ' är giltig!\n')
+                    log.append(f'Port {port} - giltig')
+               else:
+                    print(f'Port {port} är ogiltig.\n')
+                    log.append(f'Port {port} - ogiltig')
+                    
+          elif choice == '3':
+               show_log(log)
+     
+          elif choice == '4':
+               print(f'Antal valideringar: {len(log)}')
+               print('Avslutar...\n')
+               break
+
+main()
