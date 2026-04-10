@@ -64,22 +64,26 @@ def main():
                      log.append(f'IP "{ip}" - ogiltig')
              
          elif choice == '2':
-              while True:
-                  port = input('Ange port: ')
+             while True:
+                port = input('Ange port: ')
                   
-                  if validate_port(port):
+                if validate_port(port):
                      print(f'Port {port} är giltig!\n')
                      log.append(f'Port {port} - giltig')
                      break
-                  else:
+                else:
                       print(f'Port "{port}" är ogiltig. Försök igen,\nkom igen då? xD \n')
                       log.append(f'Port "{port}" - ogiltig')
                     
          elif choice == '3':
              show_log(log)
+             print()
      
          elif choice == '4':
             print(f'Antal valideringar: {len(log)}\n')
             print('Avslutar...\n')
             break
+         
+         else: 
+             print(f'Ogiltigt val, försök igen.\n')
 main()
