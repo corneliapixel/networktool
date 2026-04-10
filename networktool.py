@@ -53,24 +53,27 @@ def main():
          choice = input('Gör ett val (1-4): ')
      
          if choice == '1': 
-             ip = input('Ange IP-adress: ')
-              
-             if validate_ip(ip):
-                 print(f'{ip} är en giltig IP-adress. \n')
-                 log.append(f'IP {ip} - giltig')
-             else:
-                  print(f'"{ip}" är en ogiltig IP-adress. \n')
-                  log.append(f'IP "{ip}" - ogiltig')
-                   
-         elif choice == '2':
-             port = input('Ange port: ')
+             while True: 
+                 ip = input('Ange IP-adress: ')
+                 if validate_ip(ip):
+                     print(f'{ip} är en giltig IP-adress. \n')
+                     log.append(f'IP {ip} - giltig')
+                     break 
+                 else:
+                     print(f'"{ip}" är en ogiltig IP-adress. Försök igen! \n')
+                     log.append(f'IP "{ip}" - ogiltig')
              
-             if validate_port(port):
-                 print(f'Port {port} är giltig!\n')
-                 log.append(f'Port {port} - giltig')
-             else:
-                  print(f'Port "{port}" är ogiltig.\n')
-                  log.append(f'Port "{port}" - ogiltig')
+         elif choice == '2':
+              while True:
+                  port = input('Ange port: ')
+                  
+                  if validate_port(port):
+                     print(f'Port {port} är giltig!\n')
+                     log.append(f'Port {port} - giltig')
+                     break
+                  else:
+                      print(f'Port "{port}" är ogiltig. Försök igen,\nkom igen då? xD \n')
+                      log.append(f'Port "{port}" - ogiltig')
                     
          elif choice == '3':
              show_log(log)
