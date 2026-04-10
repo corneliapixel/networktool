@@ -50,11 +50,11 @@ def main():
     
     while True: 
          show_menu()
-         choice = input('Gör ett val (1-4): ')
+         choice = input('Gör ett val (1-4): ').strip()
      
          if choice == '1': 
              while True: 
-                 ip = input('Ange IP-adress: ')
+                 ip = input('Ange IP-adress: ').strip()
                  if validate_ip(ip):
                      print(f'{ip} är en giltig IP-adress. \n')
                      log.append(f'IP {ip} - giltig')
@@ -65,7 +65,7 @@ def main():
              
          elif choice == '2':
              while True:
-                port = input('Ange port: ')
+                port = input('Ange port: ').strip()
                   
                 if validate_port(port):
                      print(f'Port {port} är giltig!\n')
