@@ -12,7 +12,7 @@ int main() {
 	printf("1. Validera IP-adress\n");
 	printf("2. Validera port\n");
 	printf("3. Visa logg\n");
-	printf("Avsluta\n");
+	printf("4. Avsluta\n");
 
 	printf("Gör ett val (1-4): ");
 	scanf("%d", &choice);
