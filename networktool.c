@@ -19,6 +19,40 @@ int main() {
 
 	printf("validerar: %d \n", choice);
 
+	if (choice == 1) {
+		char ip[50];
+
+		printf("Ange IP-adress: ");
+		scanf("%s", ip);
+
+		printf("Testsvar: %s\n", ip);
+	}
+
+	else if (choice == 2) {
+		int port;
+
+		printf("Ange port: ");
+		scanf("%d", &port);
+
+		printf("Testsvar: %d\n", port);
+
+	}	
+
+	else if (choice == 3) {
+
+		printf("Här kommer loggen visas: \n");
+
+	}
+
+	else if (choice == 4) {
+
+		printf("Avslutar...\n");
+
+	}
+
+	else
+		printf("Ogiltigt val, försök igen.\n");
+
 
 
 
