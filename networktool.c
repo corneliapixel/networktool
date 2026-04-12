@@ -48,6 +48,14 @@ int validate_ip (char ip[]) {
 	}
 }
 
+int validate_port(int port) {
+	if (port >= 1 && port <= 65535) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
 int main() {
 
 	int choice;
@@ -82,12 +90,33 @@ int main() {
 	else if (choice == 2) {
 		int port;
 
+		while (1) {
 		printf("Ange port: ");
-		scanf("%d", &port);
+		
+		if (scanf("%d", &port) != 1) {
+			// försöker läsa integer i input, om det misslyckas:
 
-		printf("Testsvar: %d\n", port);
+			printf("Ogiltig input - ange siffror, tack!\n");
+			// uppdaterar användaren att input är fel
 
-	}	
+			while (getchar() != '\n');
+			// tömmer raden från input 
+			// motverkar att en loop fastnar
+			
+			continue;
+			// stannar kvar i denna loop (frågar igen)
+		}
+
+		if (validate_port(port)) {
+			printf("%d är en giltig port\n", port);
+			break;
+			// korrekt -> avsluta loopen
+		} else {
+			printf("\"%d\" är en ogiltig port\n", port);
+			// inkorrekt -> fråga igen
+		}
+	} 
+} 
 
 	else if (choice == 3) {
 
