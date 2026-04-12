@@ -3,6 +3,16 @@
 #include <ctype.h>
 #include <stdlib.h>
 
+#define LOG_BUFFER_SIZE 100 // max antal valideringar
+#define LOG_ENTRY_LENGTH 100 // max längd per loggrad
+
+char logs[LOG_BUFFER_SIZE][LOG_ENTRY_LENGTH];
+// lagrar alla loggrader 
+
+int log_count = 0;
+// räknar hur många loggrader som används
+
+
 
 int validate_ip (char ip[]) {
 	char copy[50];
@@ -54,6 +64,10 @@ int validate_port(int port) {
 	} else {
 		return 0;
 	}
+}
+
+void show_log() {
+
 }
 
 int main() {
