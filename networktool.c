@@ -18,10 +18,9 @@ int validate_ip (char ip[]) {
 		// loopar så länge det finns delar kvar i IP-adressen
 
 		for (int i = 0; part[i] != '\0'; i++) {
-
-		if (!isdigit(part[i])) {
-			return 0;
-			// om det inte är siffror -> ogiltig IP
+			if (!isdigit(part[i])) {
+				return 0;
+				// om det inte är siffror -> ogiltig IP
 			}
 		}
 
