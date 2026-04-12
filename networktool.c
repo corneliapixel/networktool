@@ -12,8 +12,6 @@ char logs[LOG_BUFFER_SIZE][LOG_ENTRY_LENGTH];
 int log_count = 0;
 // räknar hur många loggrader som används
 
-
-
 int validate_ip (char ip[]) {
 	char copy[50];
 	strcpy(copy, ip);
@@ -63,6 +61,18 @@ int validate_port(int port) {
 		return 1;
 	} else {
 		return 0;
+	}
+}
+
+void add_log(char entry[]) {
+	if (log_count < LOG_BUFFER_SIZE) {
+		// om det finns plats kvar -> spara ny loggrad
+
+		strcpy(logs[log_count], entry);
+		// kopiera till nästa plats i loggen
+
+		log_count++;
+		// ökar antalet sparade loggrader
 	}
 }
 
