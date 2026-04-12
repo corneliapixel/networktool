@@ -8,6 +8,9 @@ int main() {
 
 	int choice;
 
+	while (1) { 
+		/* code */
+
 	printf("=== NÄTVERKSVERKTYG ===\n");
 	printf("1. Validera IP-adress\n");
 	printf("2. Validera port\n");
@@ -47,14 +50,15 @@ int main() {
 	else if (choice == 4) {
 
 		printf("Avslutar...\n");
+		break;
 
 	}
 
-	else
+	else {
 		printf("Ogiltigt val, försök igen.\n");
+	} 
 
-
-
+} 
 
 	return 0;
-}
+} 
