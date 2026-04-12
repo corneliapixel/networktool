@@ -23,6 +23,13 @@ int validate_ip (char ip[]) {
 				// om det inte är siffror -> ogiltig IP
 			}
 		}
+			int num = atoi(part);
+
+			if (num < 0 || num > 255) {
+				return 0;
+				// om input är utanför intervallet -> ogiltig IP
+			}
+
 
 		count++;
 		// räknar hur många delar det är 
