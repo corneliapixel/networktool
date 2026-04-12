@@ -4,7 +4,33 @@
 #include <stdlib.h>
 
 
-int validate_ip (char ip[]) { 
+int validate_ip (char ip[]) {
+	char copy[50];
+	strcpy(copy, ip);
+	// kopierar IP-adressen så att originalet förblir (strtok ändrar strängen)
+	
+	char *part = strtok(copy, ".");
+	// delar upp strängen vid varje punkt
+
+	int count = 0;
+
+	while (part != NULL) {
+		// loopar så länge det finns delar kvar i IP-adressen
+
+		count++;
+		// räknar hur många delar det är 
+
+		part = strtok(NULL, ".");
+		// NULL -> gå vidare till nästa del i IP-adressen
+	}
+
+	if (count == 4) {
+		return 1;
+		// om exakt 4 delar = kan vara en giltig IP-adress
+	} else {
+		return 0;
+		// annars ogiltig
+	}
 
 	return 1;
 }
