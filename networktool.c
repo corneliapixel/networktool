@@ -77,8 +77,26 @@ void add_log(char entry[]) {
 }
 
 void show_log() {
+	printf("=== LOGGEN ===\n");
+
+	if (log_count == 0) {
+		printf("Loggen är tom. \n");
+		// om inga valideringar har gjorts
+
+		return;
+		// avslutar funktionen direkt
+	}
+
+	for (int i = 0; i < log_count; i++) {
+		// loopar igenom loggraderna
+
+		printf("%d. %s", i + 1, logs[i]);
+		// skriver ut nummer för varje rad inklusive loggtexten
+		// i + 1 ->  radnummer börjar på 1 istället för arrayens index (som börjar på 0)
+	}
 
 }
+
 
 int main() {
 
