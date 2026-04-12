@@ -100,19 +100,25 @@ int main() {
 
 	if (choice == 1) {
 		char ip[50];
+		char entry[100];
 
 		printf("Ange IP-adress: ");
 		scanf("%s", ip);
 
 		if (validate_ip(ip)) {
 			printf("%s är en giltig IP-adress\n", ip);
+			sprintf(entry, "IP %s - giltig", ip);
 		} else {
 			printf("\"%s\" är en ogiltig IP-adress\n", ip);
+			sprintf(entry, "IP \"%s\" - ogiltig", ip);
 		}
+
+		add_log(entry);
 	} 
 	
 	else if (choice == 2) {
 		int port;
+		char entry[100];
 
 		while (1) {
 		printf("Ange port: ");
@@ -133,10 +139,14 @@ int main() {
 
 		if (validate_port(port)) {
 			printf("%d är en giltig port\n", port);
+			sprintf(entry, "Port %d - giltig", port);
+			add_log(entry);
 			break;
 			// korrekt -> avsluta loopen
 		} else {
 			printf("\"%d\" är en ogiltig port\n", port);
+			sprintf(entry, "Port \"%d\" - ogiltig", port);
+			add_log(entry);
 			// inkorrekt -> fråga igen
 		}
 	} 
