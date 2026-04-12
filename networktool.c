@@ -17,12 +17,21 @@ int validate_ip (char ip[]) {
 	while (part != NULL) {
 		// loopar så länge det finns delar kvar i IP-adressen
 
+		for (int i = 0; part[i] != '\0'; i++) {
+
+		if (!isdigit(part[i])) {
+			return 0;
+			// om det inte är siffror -> ogiltig IP
+			}
+		}
+
 		count++;
 		// räknar hur många delar det är 
 
 		part = strtok(NULL, ".");
 		// NULL -> gå vidare till nästa del i IP-adressen
-	}
+	
+	} 
 
 	if (count == 4) {
 		return 1;
@@ -31,8 +40,6 @@ int validate_ip (char ip[]) {
 		return 0;
 		// annars ogiltig
 	}
-
-	return 1;
 }
 
 int main() {
