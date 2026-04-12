@@ -4,6 +4,11 @@
 #include <stdlib.h>
 
 
+int validate_ip (char ip[]) { 
+
+	return 1;
+}
+
 int main() {
 
 	int choice;
@@ -28,9 +33,13 @@ int main() {
 		printf("Ange IP-adress: ");
 		scanf("%s", ip);
 
-		printf("Testsvar: %s\n", ip);
-	}
-
+		if (validate_ip(ip)) {
+			printf("%s är en giltig IP-adress\n", ip);
+		} else {
+			printf("\"%s\" är en ogiltig IP-adress\n", ip);
+		}
+	} 
+	
 	else if (choice == 2) {
 		int port;
 
