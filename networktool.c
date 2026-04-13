@@ -177,9 +177,12 @@ int main() {
 	}
 
 	else if (choice == 4) {
+		printf("Antal valideringar under körning: %d\n", log_count);
+		// skriver ut totala antal valideringar
 
 		printf("Avslutar...\n");
 		break;
+		// lämnar while-loopen och programmet avslutas
 
 	}
 
