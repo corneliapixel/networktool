@@ -56,8 +56,23 @@ int validate_ip (char ip[]) {
 	}
 }
 
-int validate_port(int port) {
-	if (port >= 1 && port <= 65535) {
+int validate_port(char port[]) {
+
+	if (port[0] == '\0') {
+		return 0;
+		// tom input = ogiltig
+	}
+
+	for (int i = 0; port[i] != '\0'; i++) {
+		if (!isdigit(port[i])) {
+			return 0;
+			// om innehåller annat än siffror -> ogiltig
+		}
+	}
+
+	int number = atoi(port);
+
+	if (number >= 1 && number <= 65535) {
 		return 1;
 	} else {
 		return 0;
