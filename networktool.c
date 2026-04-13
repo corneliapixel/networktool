@@ -160,12 +160,11 @@ int main() {
 		show_menu();
 
 		choice = menu_choice();
-
-	
-	if (choice == -1) {
-		printf("Ogiltigt val - försök igen!\n\n");
-		continue; 
-	} 
+		
+		if (choice == -1) {
+			printf("Ogiltigt val - försök igen!\n\n");
+			continue; 
+		} 
 
 	printf("\n");
 
@@ -175,20 +174,21 @@ int main() {
 
 		while (1) {
 			printf("Ange IP-adress: ");
-			scanf("%s", ip);
+			fgets(ip, sizeof(ip), stdin);
+			ip[strcspn(ip, "\n")] = '\0';
 
-		if (validate_ip(ip)) {
-			printf("%s är en giltig IP-adress\n", ip);
-			sprintf(entry, "IP %s - giltig", ip);
-			add_log(entry);
+			if (validate_ip(ip)) {
+				printf("%s är en giltig IP-adress\n", ip);
+				sprintf(entry, "IP %s - giltig", ip);
+				add_log(entry);
 			break;
-		} else {
-			printf("\"%s\" är en ogiltig IP-adress\n", ip);
-			sprintf(entry, "IP \"%s\" - ogiltig", ip);
-			add_log(entry);
+			} else {
+				printf("\"%s\" är en ogiltig IP-adress, försök igen!\n", ip);
+				sprintf(entry, "IP \"%s\" - ogiltig", ip);
+				add_log(entry);
+			} 
 		} 
 	} 
-} 
 
 
 	else if (choice == 2) {
