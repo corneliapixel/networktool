@@ -3,6 +3,8 @@
 #include <ctype.h>
 #include <stdlib.h>
 
+void remove_whitespace(char str[]);
+
 #define LOG_BUFFER_SIZE 100 // max antal valideringar
 #define LOG_ENTRY_LENGTH 100 // max längd per loggrad
 
@@ -136,6 +138,8 @@ int menu_choice() {
 	// ersätter \n som fgets lägger till
 	//med null-terminator så strängen blir clean
 
+	remove_whitespace(input);
+
 	if(!isdigit(input[0]) || strlen(input) != 1) {
 		// kontrollerar:
 		// om första tecknet inte är en siffra
@@ -205,6 +209,7 @@ int main() {
 			printf("Ange IP-adress: ");
 			fgets(ip, sizeof(ip), stdin);
 			ip[strcspn(ip, "\n")] = '\0';
+			remove_whitespace(ip);
 
 			if (validate_ip(ip)) {
 				printf("%s är en giltig IP-adress\n", ip);
@@ -228,6 +233,7 @@ int main() {
 			printf("Ange port: ");
 			fgets(port, sizeof(port), stdin);
 			port[strcspn(port, "\n")] = '\0';
+			remove_whitespace(port);
 		
 		if (validate_port(port)) {
 			printf("Port %s är en giltig port\n\n", port);
