@@ -149,8 +149,37 @@ int menu_choice() {
 	return input[0] - '0';
 	// konverterar tecken till int - '1' -> 1 osv
 	// eftersom tecken lagras som ASCII-världen funkar detta
+}
 
 
+void remove_whitespace(char str[]) {
+	int start = 0;	/* början av strängen */
+	int end = strlen(str) -1; /* slutet av strängen */
+	int i = 0; /* index för att skriva tillbaka den rensade strängen*/
+
+	while (isspace((unsigned char)str[start])) {
+		start++;
+	}
+		// hoppar över alla whitespace i början (t ex mellanslag, newline, tab)
+		// hittar därefter det första "riktiga" tecknet
+
+	while (end >= start && isspace((unsigned char)str[end])) {
+		end--; 
+	}
+		// hoppar över alla whitespace i slutet
+		// hittar sista "riktiga" tecknet
+
+	while (start <= end) {
+		str[i] = str[start];
+		i++;
+		start++;
+	}
+		// kopierar den rensade delen 
+		// flyttar innehållet så det börjar på index 0
+	
+	str[i] = '\0';
+		// avslutar strängen korrekt så att gammal innehåll ignoreras
+	
 }
 
 int main() {
