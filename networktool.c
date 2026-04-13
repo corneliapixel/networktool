@@ -192,35 +192,23 @@ int main() {
 
 
 	else if (choice == 2) {
-		int port;
+		char port[20];
 		char entry[100];
 
 		while (1) {
-		printf("Ange port: ");
+			printf("Ange port: ");
+			fgets(port, sizeof(port), stdin);
+			port[strcspn(port, "\n")] = '\0';
 		
-		if (scanf("%d", &port) != 1) {
-			// försöker läsa integer i input, om det misslyckas:
-
-			printf("Ogiltig input - ange siffror, tack!\n");
-			// uppdaterar användaren att input är fel
-
-			while (getchar() != '\n');
-			// tömmer raden från input 
-			// motverkar att en loop fastnar
-			
-			continue;
-			// stannar kvar i denna loop (frågar igen)
-		}
-
 		if (validate_port(port)) {
-			printf("%d är en giltig port\n", port);
-			sprintf(entry, "Port %d - giltig", port);
+			printf("Port %s är en giltig port\n\n", port);
+			sprintf(entry, "Port %s - giltig", port);
 			add_log(entry);
 			break;
 			// korrekt -> avsluta loopen
 		} else {
-			printf("\"%d\" är en ogiltig port\n", port);
-			sprintf(entry, "Port \"%d\" - ogiltig", port);
+			printf("\"%s\" är en ogiltig port, försökn igen!\n\n", port);
+			sprintf(entry, "Port \"%s\" - ogiltig", port);
 			add_log(entry);
 			// inkorrekt -> fråga igen
 		}
