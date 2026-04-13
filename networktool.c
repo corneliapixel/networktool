@@ -90,10 +90,12 @@ void show_log() {
 	for (int i = 0; i < log_count; i++) {
 		// loopar igenom loggraderna
 
-		printf("%d. %s", i + 1, logs[i]);
+		printf("%d. %s\n", i + 1, logs[i]);
 		// skriver ut nummer för varje rad inklusive loggtexten
 		// i + 1 ->  radnummer börjar på 1 istället för arrayens index (som börjar på 0)
 	}
+
+	printf("\n");
 
 }
 
@@ -114,7 +116,7 @@ int main() {
 	printf("Gör ett val (1-4): ");
 	scanf("%d", &choice);
 
-	printf("validerar: %d \n", choice);
+	printf("\n");
 
 	if (choice == 1) {
 		char ip[50];
