@@ -1,3 +1,32 @@
+# Networktool i C och Python
+
+## Beskrivning 
+Detta projekt (Aktivitet 2) innehåller ett nätverksverktyg i både C och Python.
+Programmet omfattar en meny där användaren kan validera IP-adresser, portar, visa logg över tidigare valideringar samt avsluta programmet och visa totala valideringar.
+
+## Funktioner
+
+- **Validera IPv4-adresser (format X.X.X.X inom intervallet 0-255)**
+- **Validera portnummer (1-65535)**
+- **Spara valideringar i en logg under körning av programmet**
+- **Visa loggen med numrering**
+- **Visa totala antal valideringar vid avslut**
+
+## Hur man kör programmet
+
+### Python
+Ha Python installerat (Python 3).
+Kör programmet i terminalen: 
+```#python3 networktool.py```
+Programmet startar direkt och visar en meny där användaren kan göra flera val (1-4). 
+
+### C
+För att köra C-versionen behöver programmet först kompileras: 
+```gcc networktool.c -o ccode```
+Kör sedan C programmet i terminalen:
+```./networktool```
+Programmet startar och fungerar på samma sätt som Python versionen. 
+
 ## Reflektion - skillnader mellan C och Python
 
 Att skapa samma program i både C och Python visade tydliga skillnader mellan språken.
@@ -18,7 +47,8 @@ En annan viktig skillnad jag lärde mig i C är att strängar är arrayer av tec
 Jag lärde mig också att funktioner i C måste deklareras innan de används. Därför behövde jag skriva void remove_whitespace(char str[]); högt uppe i filen för att programmet skulle kunna använda funktionen i menu_choice funktionen (som ju var skriven innan remove_whitespace funktionen). Detta visar än en gång hur C kräver mer planering och struktur, medan Python tillåter mer flexibilitet. 
 En annan skillnad är hur datatyper hanteras i C, där jag behövde konvertera tecken till heltal manuellt, till exempel med: input[0] - ‘0’; . Detta fungerar för att tecken lagras i ASCII-värden. I Python sker samma typ av konvertering automatiskt med int(). 
 
-Min slutsats är att Python var lättare och snabbare att använda för denna uppgift, men jag tycker C gav mer kontroll och en djupare förståelse för hur program faktiskt fungerar på en lägre nivå.
+**Slutsats:**
+Python var lättare och snabbare att använda för denna uppgift, men jag tycker C gav mer kontroll och en djupare förståelse för hur program faktiskt fungerar på en lägre nivå.
 
 
 
