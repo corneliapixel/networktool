@@ -3,7 +3,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 
-void remove_whitespace(char str[]);
+void remove_whitespace(char str[]); // deklarerar funktionen här så den kan användas innan den definieras (t ex i funktionen menu_choice)
 
 #define LOG_BUFFER_SIZE 100 // max antal valideringar
 #define LOG_ENTRY_LENGTH 100 // max längd per loggrad
@@ -17,7 +17,7 @@ int log_count = 0;
 int validate_ip (char ip[]) {
 	char copy[50];
 	strcpy(copy, ip);
-	// kopierar IP-adressen så att originalet förblir (strtok ändrar strängen)
+	// kopierar IP-adressen så att originalet inte ändras (strtok ändrar strängen)
 	
 	char *part = strtok(copy, ".");
 	// delar upp strängen vid varje punkt
@@ -25,7 +25,7 @@ int validate_ip (char ip[]) {
 	int count = 0;
 
 	while (part != NULL) {
-		// loopar så länge det finns delar kvar i IP-adressen
+		// loopar igenom varje del (oktett) i IP-adressen
 
 		for (int i = 0; part[i] != '\0'; i++) {
 			if (!isdigit(part[i])) {
@@ -34,6 +34,7 @@ int validate_ip (char ip[]) {
 			}
 		}
 			int num = atoi(part);
+			// konverterar sträng till heltal
 
 			if (num < 0 || num > 255) {
 				return 0;
@@ -42,7 +43,7 @@ int validate_ip (char ip[]) {
 
 
 		count++;
-		// räknar hur många delar det är 
+		// räknar hur många delar det är (ska vara exakt 4)
 
 		part = strtok(NULL, ".");
 		// NULL -> gå vidare till nästa del i IP-adressen
@@ -62,7 +63,7 @@ int validate_port(char port[]) {
 
 	if (port[0] == '\0') {
 		return 0;
-		// tom input = ogiltig
+		// tom sträng = ogiltig input
 	}
 
 	for (int i = 0; port[i] != '\0'; i++) {
@@ -73,8 +74,10 @@ int validate_port(char port[]) {
 	}
 
 	int number = atoi(port);
+	// konverterar sträng till heltal
 
 	if (number >= 1 && number <= 65535) {
+		// kontrollerar att porten ligger innanför intervallet 
 		return 1;
 	} else {
 		return 0;
@@ -135,29 +138,25 @@ int menu_choice() {
 	// säkrare än scanf för att den lämnar kvar onödigt innehåll i bufferten
 
 	input[strcspn(input, "\n")] = '\0';
-	// ersätter \n som fgets lägger till
-	//med null-terminator så strängen blir clean
+	// tar bort newline (\n) från input
 
+	// tar bort whitespace i början och slutet
 	remove_whitespace(input);
 
 	if(!isdigit(input[0]) || strlen(input) != 1) {
-		// kontrollerar:
-		// om första tecknet inte är en siffra
-		// om längden inte är exakt 1 tecken
-		// t. ex: "4-", "10" eller "a" ska bli ogiltigt 
+		// kontrollerar att input är exakt en siffra
 
 		return -1;
 		// ogiltigt val
 	}
 
 	return input[0] - '0';
-	// konverterar tecken till int - '1' -> 1 osv
-	// eftersom tecken lagras som ASCII-världen funkar detta
+	// konverterar tecken till int - ('1') till heltal (1) osv
 }
 
 
 void remove_whitespace(char str[]) {
-	int start = 0;	/* början av strängen */
+	int start = 0;	/* index för början av strängen */
 	int end = strlen(str) -1; /* slutet av strängen */
 	int i = 0; /* index för att skriva tillbaka den rensade strängen*/
 
@@ -182,7 +181,7 @@ void remove_whitespace(char str[]) {
 		// flyttar innehållet så det börjar på index 0
 	
 	str[i] = '\0';
-		// avslutar strängen korrekt så att gammal innehåll ignoreras
+		// avslutar strängen korrekt så att gammalt innehåll ignoreras
 	
 }
 
@@ -242,7 +241,7 @@ int main() {
 			break;
 			// korrekt -> avsluta loopen
 		} else {
-			printf("\"%s\" är en ogiltig port, försökn igen!\n\n", port);
+			printf("\"%s\" är en ogiltig port, försök igen!\n\n", port);
 			sprintf(entry, "Port \"%s\" - ogiltig", port);
 			add_log(entry);
 			// inkorrekt -> fråga igen
