@@ -99,22 +99,27 @@ void show_log() {
 
 }
 
-
-int main() {
-
-	int choice;
-
-	while (1) { 
-	/* code */
+void show_menu() {
 
 	printf("=== NÄTVERKSVERKTYG ===\n");
 	printf("1. Validera IP-adress\n");
 	printf("2. Validera port\n");
 	printf("3. Visa logg\n");
 	printf("4. Avsluta\n");
-
 	printf("Gör ett val (1-4): ");
+}
+
+
+int main() {
+
+	int choice;
+
+	while (1) { 
+		show_menu();
+
+	
 	if (scanf("%d", &choice) != 1) {
+		printf("Ogiltigt val - ange siffror(1-4)\n");
 		
 		while (getchar () != '\n');
 		// tömmer raden från felaktig input
