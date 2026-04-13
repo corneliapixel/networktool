@@ -171,9 +171,7 @@ int main() {
 } 
 
 	else if (choice == 3) {
-
-		printf("Här kommer loggen visas: \n");
-
+		show_log();
 	}
 
 	else if (choice == 4) {
