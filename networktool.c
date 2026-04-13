@@ -144,17 +144,13 @@ int main() {
 	while (1) { 
 		show_menu();
 
-	
-	if (scanf("%d", &choice) != 1) {
-		printf("Ogiltigt val - ange siffror(1-4)\n");
-		
-		while (getchar () != '\n');
-		// tömmer raden från felaktig input
+		choice = menu_choice();
 
-		printf("\n");
-		continue;
-		// gå tillbaka till menyn
-	}
+	
+	if (choice == -1) {
+		printf("Ogiltigt val - försök igen!\n\n");
+		continue; 
+	} 
 
 	printf("\n");
 
