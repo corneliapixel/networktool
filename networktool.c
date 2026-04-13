@@ -105,7 +105,7 @@ int main() {
 	int choice;
 
 	while (1) { 
-		/* code */
+	/* code */
 
 	printf("=== NÄTVERKSVERKTYG ===\n");
 	printf("1. Validera IP-adress\n");
@@ -114,7 +114,15 @@ int main() {
 	printf("4. Avsluta\n");
 
 	printf("Gör ett val (1-4): ");
-	scanf("%d", &choice);
+	if (scanf("%d", &choice) != 1) {
+		
+		while (getchar () != '\n');
+		// tömmer raden från felaktig input
+
+		printf("\n");
+		continue;
+		// gå tillbaka till menyn
+	}
 
 	printf("\n");
 
@@ -177,7 +185,7 @@ int main() {
 	}
 
 	else if (choice == 4) {
-		printf("Antal valideringar under körning: %d\n", log_count);
+		printf("Antal valideringar under körning av programmet: %d\n", log_count);
 		// skriver ut totala antal valideringar
 
 		printf("Avslutar...\n");
@@ -189,8 +197,9 @@ int main() {
 	else {
 		printf("Ogiltigt val, försök igen.\n");
 	} 
+}
 
-} 
+ 
 
 	return 0;
 } 
