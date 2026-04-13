@@ -116,7 +116,6 @@ int main() {
 
 	while (1) { 
 		show_menu();
-
 	
 	if (scanf("%d", &choice) != 1) {
 		printf("Ogiltigt val - ange siffror(1-4)\n");
@@ -135,19 +134,24 @@ int main() {
 		char ip[50];
 		char entry[100];
 
-		printf("Ange IP-adress: ");
-		scanf("%s", ip);
+		while (1) {
+			printf("Ange IP-adress: ");
+			scanf("%s", ip);
 
 		if (validate_ip(ip)) {
 			printf("%s är en giltig IP-adress\n", ip);
 			sprintf(entry, "IP %s - giltig", ip);
+			add_log(entry);
+			break;
 		} else {
 			printf("\"%s\" är en ogiltig IP-adress\n", ip);
 			sprintf(entry, "IP \"%s\" - ogiltig", ip);
-		}
-
-		add_log(entry);
+			add_log(entry);
+		} 
 	} 
+} 
+
+		
 	
 	else if (choice == 2) {
 		int port;
