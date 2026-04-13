@@ -106,16 +106,44 @@ void show_menu() {
 	printf("2. Validera port\n");
 	printf("3. Visa logg\n");
 	printf("4. Avsluta\n");
-	printf("Gör ett val (1-4): ");
 }
 
+int menu_choice() {
+	char input[20];
+	// skapar array för att lagra användarens input
+	printf("Gör ett val (1-4): ");
+
+	fgets(input, sizeof(input), stdin);
+	// läser nu hela raden som en text istället för endast ett heltal (integer)
+	// säkrare än scanf för att den lämnar kvar onödigt innehåll i bufferten
+
+	input[strcspn(input, "\n")] = '\0';
+	// ersätter \n som fgets lägger till
+	//med null-terminator så strängen blir clean
+
+	if(!isdigit(input[0]) || strlen(input) != 1) {
+		// kontrollerar:
+		// om första tecknet inte är en siffra
+		// om längden inte är exakt 1 tecken
+		// t. ex: "4-", "10" eller "a" ska bli ogiltigt 
+
+		return -1;
+		// ogiltigt val
+	}
+
+	return input[0] - '0';
+	// konverterar tecken till int - '1' -> 1 osv
+	// eftersom tecken lagras som ASCII-världen funkar detta
+
+
+}
 
 int main() {
-
 	int choice;
 
 	while (1) { 
 		show_menu();
+
 	
 	if (scanf("%d", &choice) != 1) {
 		printf("Ogiltigt val - ange siffror(1-4)\n");
@@ -151,8 +179,7 @@ int main() {
 	} 
 } 
 
-		
-	
+
 	else if (choice == 2) {
 		int port;
 		char entry[100];
