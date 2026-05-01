@@ -1,54 +1,67 @@
-# Networktool i C och Python
+# Network Tool (C & Python)
 
-## Beskrivning 
-Detta projekt (Aktivitet 2) innehåller ett nätverksverktyg i både C och Python.
-Programmet omfattar en meny där användaren kan validera IP-adresser, portar, visa logg över tidigare valideringar samt avsluta programmet och visa totala valideringar.
+## Description
+This project is a network tool implemented in both C and Python.  
+It provides a command-line interface where the user can validate IP addresses and ports, view a log of previous validations, and track total validations.
 
-## Funktioner
+## Features
+- Validate IPv4 addresses (format X.X.X.X, range 0–255)
+- Validate port numbers (1–65535)
+- Store validation results in a runtime log
+- Display validation history with numbering
+- Show total number of validations on exit
 
-- **Validera IPv4-adresser (format X.X.X.X inom intervallet 0-255)**
-- **Validera portnummer (1-65535)**
-- **Spara valideringar i en logg under körning av programmet**
-- **Visa loggen med numrering**
-- **Visa totala antal valideringar vid avslut**
+## Technologies
+- Python
+- C
+- CLI (Command Line Interface)
 
-## Hur man kör programmet
+---
+
+## How to run
 
 ### Python
-Ha Python installerat (Python 3).
-Kör programmet i terminalen: 
-```#python3 networktool.py```
-Programmet startar direkt och visar en meny där användaren kan göra flera val (1-4). 
+Requires Python 3:
+```bash
+python3 networktool.py
+```
 
-### C
-För att köra C-versionen behöver programmet först kompileras: 
-```gcc networktool.c -o ccode```
-Kör sedan C programmet i terminalen:
-```./networktool```
-Programmet startar och fungerar på samma sätt som Python versionen. 
+### C 
+Compile and run:
+```bash 
+gcc networktool.c -o ccode
+``` 
 
-## Reflektion - skillnader mellan C och Python
+Run the program:
+```bash
+./ccode
+```
+The output binary is named `ccode`.
 
-Att skapa samma program i både C och Python visade tydliga skillnader mellan språken.
+## Key Learnings
 
-Det första som kändes svårare i C var hanteringen av input. I Python behövde jag inte tänka lika mycket på datatyper, eftersom input() alltid returnerar en sträng och kan hanteras flexibelt. I C behövde jag däremot lägga ner mer tid och noggrannhet med datatyper och hur input läses in, till exempel om det är ett heltal eller en sträng. 
-När jag använde scanf (i C) så uppstod flera problem om input inte matchade det programmet förväntade sig, vilket ledde till felaktiga beteenden eller att programmet fastnade i en loop.
+Developing the same tool in both C and Python highlighted key differences between high-level and low-level programming.
 
-För att lösa detta gick jag över till att använda fgets istället. Fgets gör att hela raden läses in som text, inklusive mellanslag, vilket gör programmet mer robust. Jag kunde sedan själv kontrollera och validera inputen med hjälp av fler rader. Detta liknar hur Python fungerar, där man kan läsa in in input som en sträng och sedan arbeta igenom den.
+### Input handling
 
-I Python använde jag input().strip() för att ta bort mellanslag i början och slutet av inputen. I C behövde jag implementera samma funktion manuellt genom att använda fgets, ta bort newline-tecknet och skriva en egen funktion (remove_whitespace) för att fixa till strängen. Detta moment visar att C kräver mer manuell hantering av strängar jämfört med Python där mycket funktioner är inbyggt redan.
+Python simplifies input handling, while C requires careful management of data types and input validation.
 
-Skillnaderna visade sig även i hur loggen hanterades. I Python kunde man använda en lista (log = [ ] ) och enkelt lägga till nya element med append(). I C behövde jag istället definiera en array med fast storlek och manuellt hålla reda på hur många loggrader som har lagrats. Detta visar hur Python tillhandahåller dynamiska datastrukter och hur C kräver att man planerar minnesanvändningen i förväg.
+Using `scanf` caused issues, which led to switching to `fgets` for more robust handling.
 
-Python var snabbare att skriva i, eftersom språket är mer hög nivå och kräver inte kompilering på samma sätt. Koden kan köras direkt och felkod kan upptäckas snabbt. C krävde mer arbete, mer planering och struktur, men gav samtidigt mer kontroll över hur programmet fungerar. Till exempel behövde jag manuellt hantera strängar, konverteringar och funktioner, vilket gjorde det tydligare vad som faktiskt sker “behind the scenes”. Det gav mig en större förståelse för vad som skiljer ett låg nivå och ett hög nivå språk åt.
+### Memory and data structures
 
-En annan viktig skillnad jag lärde mig i C är att strängar är arrayer av tecken som måste ha en bestämd storlek för att det ska kunna lagras någonstans. Det innebär att man själv måste ha koll på att det finns tillräckligt med minne och att strängen avslutas korrekt med en null-terminator (‘\0’). I Python hanteras detta automatiskt.
+Python uses dynamic structures (lists), while C requires fixed-size arrays and manual tracking.
 
-Jag lärde mig också att funktioner i C måste deklareras innan de används. Därför behövde jag skriva void remove_whitespace(char str[]); högt uppe i filen för att programmet skulle kunna använda funktionen i menu_choice funktionen (som ju var skriven innan remove_whitespace funktionen). Detta visar än en gång hur C kräver mer planering och struktur, medan Python tillåter mer flexibilitet. 
-En annan skillnad är hur datatyper hanteras i C, där jag behövde konvertera tecken till heltal manuellt, till exempel med: input[0] - ‘0’; . Detta fungerar för att tecken lagras i ASCII-värden. I Python sker samma typ av konvertering automatiskt med int(). 
+### String handling
 
-**Slutsats:**
-Python var lättare och snabbare att använda för denna uppgift, men jag tycker C gav mer kontroll och en djupare förståelse för hur program faktiskt fungerar på en lägre nivå.
+Python provides built-in methods like `.strip()`, while C requires manual implementation (e.g. removing newline characters and whitespace).
 
+### Control and structure
 
+C requires more planning (function declarations, memory management), but provides deeper understanding of how programs work internally.
 
+## Summary
+
+Python allowed faster development, while C provided greater control and insight into low-level program behavior.
+
+This project improved my understanding of input validation, program structure, and differences between programming languages.
